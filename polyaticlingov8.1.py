@@ -1,7 +1,7 @@
 import tkinter as tk
 
 # --- Cipher setup: only letters ---
-ciphercode = "zxcvbnmasdfghjklqwertyuiop"
+ciphercode = " zxcvbnmasdfghjklqwertyuiop "
 backwards = ciphercode[::-1]
 code = {ciphercode[i]: backwards[i] for i in range(len(ciphercode))}
 print(code)

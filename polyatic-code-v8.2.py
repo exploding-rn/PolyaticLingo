@@ -1,5 +1,5 @@
 import tkinter as tk
-
+#alpha 1.0.1a
 # --- Cipher setup: only letters ---
 ciphercode = ' zxcvbnmlkjhgfdsaqwertyuiop '
 backwards = ciphercode[::-1]

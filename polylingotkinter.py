@@ -1,41 +1,44 @@
 import tkinter as tk
 
-# --- Your cipher logic ---
-usercodechoice = ' zxcvbnmlkjhgfdsaqwertyuiop '
-backwards = usercodechoice[::-1]
-code = {usercodechoice[i]: backwards[i] for i in range(len(usercodechoice))}
-
+# --- Cipher setup: only letters ---
+ciphercode = " zxcvbnmlkjhgfdsaqwertyuiop "
+backwards = ciphercode[::-1]
+code = {ciphercode[i]: backwards[i] for i in range(len(ciphercode))}
+print(code)
 def atbash(text):
     text = text.lower()
     output = ''
     for letter in text:
-        if letter in code:
-            output += code[letter]
+        if letter.isalpha():
+            output += code.get(letter, letter)
         else:
-            output += letter   # keep characters that aren't in the cipher
+            output += letter  # numbers/punctuation pass through unchanged
     return output
 
-# --- GUI part ---
 def on_encode():
-    user_text = entry.get()
-    result = atbash(user_text)
-    output_label.config(text=result)
+    result = atbash(entry.get())
+    output_var.set(result)
+
+def on_copy():
+    root.clipboard_clear()
+    root.clipboard_append(output_var.get())
+    root.update()
 
 root = tk.Tk()
 root.title("Cipher Encoder")
-root.geometry("350x200")
+root.geometry("350x220")
 
-# Input label + entry
-tk.Label(root, text="Text to encode/decode:").pack(pady=5)
+tk.Label(root, text="Text to encode:").pack(pady=5)
 entry = tk.Entry(root, width=40)
 entry.pack(pady=5)
 
-# Encode button
-tk.Button(root, text="Encode/Decode", command=on_encode).pack(pady=10)
+tk.Button(root, text="Encode", command=on_encode).pack(pady=5)
 
-# Output label
 tk.Label(root, text="Result:").pack()
-output_label = tk.Label(root, text="", fg="blue", wraplength=300)
-output_label.pack(pady=5)
+output_var = tk.StringVar()
+output_entry = tk.Entry(root, textvariable=output_var, width=40, state="readonly")
+output_entry.pack(pady=5)
+
+tk.Button(root, text="Copy to Clipboard", command=on_copy).pack(pady=5)
 
 root.mainloop()

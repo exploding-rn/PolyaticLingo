@@ -4,7 +4,7 @@ import tkinter as tk
 ciphercode = "zxcvbnmasdfghjklqwertyuiop"
 backwards = ciphercode[::-1]
 code = {ciphercode[i]: backwards[i] for i in range(len(ciphercode))}
-
+print(code)
 def atbash(text):
     text = text.lower()
     output = ''

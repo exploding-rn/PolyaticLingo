@@ -40,3 +40,5 @@ The translation engine relies on a bidirectional letter-swapping map. Non-alphab
 * make it C++ or C# to run without downloading anything
 * add style
 
+# DISCORD
+https://discord.gg/qT9C9PAD6e
